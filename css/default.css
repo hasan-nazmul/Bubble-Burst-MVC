@@ -1,0 +1,217 @@
+*{outline:0; margin:0; padding:0;}
+.clearfix {clear:both;}
+body {
+	background-color:  #cdcdcd ;
+}
+ul li {
+	list-style: none;
+}
+a {
+	text-decoration: none;
+}
+.shell {
+	width:1280px;
+	margin:0 auto;
+}
+.header {
+	background-color: #06dbe9;
+	padding:20px 0;
+}
+.header .logo {
+	width:50%;
+	float:left;
+}
+.logo h1 {
+	color:#edecec;
+}
+.header .login {
+	width:50%;
+	float: right;
+}
+.login form {
+	
+}
+.login .frmLogin {
+	width:70%;
+	display:block;
+	float:right;
+}
+.login .formSignUp {
+	*width:20%;
+	*display:block;
+	*float:right;
+}
+
+.login form input[type="text"], .login form input[type="password"] {
+	border:none;
+	padding:11px;
+	background-color: #edecec  ;
+	font-size: 1em;
+}
+.login form input[type="submit"]{
+	border:1px solid #fff;
+	padding:10px;
+	cursor:pointer;
+	font-size: 1em;
+}
+.login form .btnLogin {
+	background-color: #06dbe9;
+	color:#fff;
+	float: right;
+}
+.btnSignUp{
+	background-color:  #19bb00   ;
+	color:#fff;
+	margin-left:10px;
+	float:right;
+}
+.login ul {
+	margin-top:20px;
+	float:right;
+}
+.login ul li {
+	display:inline-block;
+	margin:5px;
+}
+.login ul li a {
+	padding:5px;
+	border:1px solid #fff;
+	color:#fff;
+}
+
+.main {
+	*padding:10px 0px;
+}
+.notification {
+	background-color:  #c1ec8e ;
+	border:1px solid  #58a002 ;
+	color: #58a002 ;
+}
+.content {
+	padding: 10px;
+}
+.main .left {
+	width:49%;
+	float: left;
+	margin-top:10px;
+	background-color: #fff;
+}
+.main .right {
+	width: 49%;
+	float: right;
+	margin-top:10px;
+	background-color: #fff;
+}
+
+.welcome {
+	padding:30px 0px;
+	background-color: #fff;
+}
+
+.right h3 {
+	font-size: 2em;
+	margin-bottom: 10px;
+}
+.right p {
+	font-size: 1.3em;
+	margin-top: 5px;
+	margin-bottom: 20px;
+}
+.register {
+	width:100%;
+}
+.register input {
+	box-sizing: border-box;
+	margin-bottom: 12px;
+	color:#555;
+	font-size: 1.1em;
+}
+.register input[type='text'], .register input[type='password']{
+	padding:10px;
+	border-radius:5px;
+	border: 1px solid #ccc;
+}
+.register input[type='submit']{
+	margin-top: 10px;
+	float: right;
+	border:1px solid #24e307;
+	background-color: #19bb00;
+	color: #fff;
+	font-size: 1.4em;
+	padding:7px;
+	border-radius:3px;
+	cursor: pointer;
+	border-bottom: 3px solid #0d6100;
+}
+.register #firstName, .register #surName{
+	display: block;
+	width: 49%;
+}
+.register #firstName {
+	float:left;
+	display: block;
+}
+.register #surName {
+	float:right;
+	display: block;
+}
+.register #userID{
+	display: block;;
+	clear: both;
+	width: 100%;
+}
+.register #userPass {
+	display: block;
+	width: 100%;
+}
+
+.about_me {
+	padding: 20px 0px;
+	background-color: #ccc;
+}
+.about_me .icon {
+	width:100px;
+	height: 100px;
+	margin:0px auto;
+}
+.about_me .icon img {
+	display: block;
+	width: 100px;
+	height: 100px;
+}
+.about_me .about_me_title {
+	text-align: center;
+}
+.about_me .about_me_message {
+	text-align: center;
+}
+
+.footer {
+	background-color:  #393939 ;
+}
+.footer .copy {
+
+}
+.footer .copy p {
+	text-align:center;
+	color:#fff;
+}
+.footer .social {
+	width:130px;
+	margin:0 auto;
+}
+.footer .social ul li {
+	display: inline-block;
+	width: 30px;
+	height:30px;
+	border:1px solid #fff;
+	line-height: 30px;
+	text-align: center;
+	color:#fff;
+}
+.footer .social ul li a {
+	padding:15px;
+	color:#fff;
+	line-height: 30px;
+	text-align: center;
+}

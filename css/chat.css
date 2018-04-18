@@ -1,0 +1,12 @@
+h1, h2, h3, h4, h5, p {padding:10px;}
+.chat {background-color:#fff; width:100%0; *height:500px; margin:20px auto;}
+.chat_header {border-bottom:1px solid #ececeb;}
+.chat_header h1 {font-size:1.1em;}
+.display {border-bottom:1px solid #ececeb; margin-bottom:10px;}
+.console {padding-bottom:10px;}
+.console input[type="text"] {width:96%; display:block; margin:auto; padding:5px; box-sizing: border-box;}
+.message {margin-bottom:0px;}
+.time {color:#9c9c9c;}
+.user {font-weight:bold;}
+.made_move {color:#08b002;}
+.enemy_encounter {color:#e90606;}
