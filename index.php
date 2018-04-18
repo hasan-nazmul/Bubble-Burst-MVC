@@ -14,6 +14,8 @@ include_once 'classlibs/Session.php';
 //include MVC classes
 include_once 'controllers/MainController.php';
 include_once 'models/Home.php';
+include_once 'models/Register.php';
+include_once 'models/Game_Board.php';
 
 
 //connect to the MySQL Server (with error reporting supression '@')

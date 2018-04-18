@@ -1,5 +1,10 @@
 <?php
-
+	$siteTitle = $data['siteTitle'];
+	$menuNavHolder = $data['loginContent'];
+	$panelHead_1 = $data['panelHead_1'];
+	$stringPanel_1 = $data['stringPanel_1'];
+	$panelHead_2 = $data['panelHead_2'];
+	$stringPanel_2 = $data['stringPanel_2'];
 ?>
 
 <!DOCTYPE html>
@@ -7,6 +12,31 @@
 <head>
 	<title><?php echo $siteTitle; ?></title>
 	<link rel="stylesheet" type="text/css" href="css/default.css">
+	<link rel="stylesheet" type="text/css" href="css/games.css">
+	<link rel="stylesheet" type="text/css" href="css/chats.css">
+	<script>
+        function IsClicked(){
+          var radios = document.getElementsByName("grid");
+
+         for (var i = 0, len = radios.length; i < len; i++) {
+              if (radios[i].checked) {
+                  return true;
+              }
+         }
+         return false;
+        }
+
+        function validate(){
+            if(IsClicked() != true){
+              document.getElementById("p1").innerHTML = "Error - please select atleast one grid on the game board!";
+              return false;
+            }else{
+              document.getElementById("p1").innerHTML = "Well done you have clicked a grid, but which one?";
+            }
+          return true;
+        }
+
+    </script>
 </head>
 <body>
 	<div class="header">
@@ -26,11 +56,11 @@
 		<div class="game_board">
 			<div class="shell">
 				<div class="left">
-					<?php //CODE HERE ?>
+					<?php echo $stringPanel_1; ?>
 				</div>
 
 				<div class="right">
-					<?php //CODE HERE ?>
+					<?php echo $stringPanel_2; ?>
 				</div>
 				<div class="clearfix"></div>
 			</div>

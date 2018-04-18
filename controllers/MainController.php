@@ -13,6 +13,11 @@ class MainController extends Controller{
         private $data; //Array containing content data for the view
         private $session; //Session class object
         private $userAuthorisation; //Integer - 0=not authorised 1=administrator 2=lecturer 3=student
+
+        private $panelHead_1;
+        private $stringPanel_1;
+        private $panelHead_2;
+        private $stringPanel_2;
     
 	//constructor
 	function __construct($db, $session){  
@@ -133,50 +138,77 @@ class MainController extends Controller{
                     break;
                 default:
                     //get the model
-                    //get the model
                     $home=new Home($this->pageID,$this->session);
 
                     //get the content from the model - put into the $data array for the view:
                     $data=[];  //initialise an empty data array
                     $data['siteTitle']= $home->getSiteTitle(); 
                     $data['loginContent'] = $home->getLoginContent();
-                    $data['welcomeTitle'] = $home->getWelcomeTitle();
-                    $data['welcomeString'] = $home->getWelcomeString();
-                    $data['slideShow'] = $home->getSlideShow();
-                    $data['aboutMeIcon'] = $home->getAboutMeIcon();
-                    $data['aboutMeTitle'] = $home->getAboutMeTitle();
-                    $data['aboutMeString'] = $home->getAboutMeString();
+                    $data['panelHead_1'] = $home->getPanelHead_1();
+                    $data['stringPanel_1'] = $home->getStringPanel_1();
+                    $data['panelHead_2'] = $home->getPanelHead_2();
+                    $data['stringPanel_2'] = $home->getStringPanel_2();
+                    //$data['welcomeTitle'] = $home->getWelcomeTitle();
+                    //$data['welcomeString'] = $home->getWelcomeString();
+                    //$data['slideShow'] = $home->getSlideShow();
+                    //$data['aboutMeIcon'] = $home->getAboutMeIcon();
+                    //$data['aboutMeTitle'] = $home->getAboutMeTitle();
+                    //$data['aboutMeString'] = $home->getAboutMeString();
+
+
                     $this->data=$data; //put the $data array into the class property do it can be accedded in DEBUG mode
                     
                     //display the view
-                    include_once 'views/home.php';   
+                    include_once 'views/game_board.php';   
                     break;
                 }
             }else {
-                //user has no privileges
-                    //get the model
-                    //get the model
+                //get the model
                     $home=new Home($this->pageID,$this->session);
 
                     //get the content from the model - put into the $data array for the view:
                     $data=[];  //initialise an empty data array
                     $data['siteTitle']= $home->getSiteTitle(); 
                     $data['loginContent'] = $home->getLoginContent();
-                    $data['welcomeTitle'] = $home->getWelcomeTitle();
-                    $data['welcomeString'] = $home->getWelcomeString();
-                    $data['slideShow'] = $home->getSlideShow();
-                    $data['aboutMeIcon'] = $home->getAboutMeIcon();
-                    $data['aboutMeTitle'] = $home->getAboutMeTitle();
-                    $data['aboutMeString'] = $home->getAboutMeString();
+                    $data['panelHead_1'] = $home->getPanelHead_1();
+                    $data['stringPanel_1'] = $home->getStringPanel_1();
+                    $data['panelHead_2'] = $home->getPanelHead_2();
+                    $data['stringPanel_2'] = $home->getStringPanel_2();
+                    //$data['welcomeTitle'] = $home->getWelcomeTitle();
+                    //$data['welcomeString'] = $home->getWelcomeString();
+                    //$data['slideShow'] = $home->getSlideShow();
+                    //$data['aboutMeIcon'] = $home->getAboutMeIcon();
+                    //$data['aboutMeTitle'] = $home->getAboutMeTitle();
+                    //$data['aboutMeString'] = $home->getAboutMeString();
+
+
                     $this->data=$data; //put the $data array into the class property do it can be accedded in DEBUG mode
                     
                     //display the view
-                    include_once 'views/home.php';  
+                    include_once 'views/game_board.php';  
             }        
            }
            else{//user is not logged in
             switch ($this->pageID) {
-                case "register":
+                case 'process_login':
+                    //get the model
+                    $home=new Home($this->pageID,$this->session);
+                    $game = new GameBoard($this->pageID, NULL, $this->db,$this->session);
+                    
+                    //get the content from the model - put into the $data array for the view:
+                    $data=[];  //initialise an empty data array
+                    $data['siteTitle']=$home->getSiteTitle(); 
+                    $data['loginContent']=$home->getLoginContent();       // an array of menu items and associated URLS
+                    $data['panelHead_1']=$game->getPanelHead_1(); 
+                    $data['stringPanel_1'] =$game->getPanelString_1();     // A string intended of the Left Hand Side of the page
+                    $data['panelHead_2']=$game->getPanelHead_2(); 
+                    $data['stringPanel_2'] =$game->getPanelString_2();
+                    $this->data=$data; //put the $data array into the class property do it can be accedded in DEBUG mode
+
+                    //display the view
+                    include_once 'views/game_board.php'; //load the view
+                    break;
+                case "register": //Not modified yet, will modify later and replace the ppropriate views
                     //get the model
                     $home=new Home($this->pageID,$this->session); 
                     $lecturer = new Lecturer($this->pageID, NULL, $this->db,$this->session);
@@ -199,18 +231,18 @@ class MainController extends Controller{
                 case "process_registration":
                     //get the model
                     $home=new Home($this->pageID,$this->session);
-                    $lecturer = new Lecturer($this->pageID, NULL, $this->db,$this->session);
+                    $Register = new Register($this->pageID, NULL, $this->db,$this->session);
                     
                     //get the content from the model - put into the $data array for the view:
                     $data=[];  //initialise an empty data array
-                    $data['pageTitle']=$home->getPageTitle(); 
-                    $data['menuNav']   =$home->getMenuNav();       // an array of menu items and associated URLS
-                    $data['panelHead_1']=$lecturer->getPanelHead_1(); 
-                    $data['stringPanel_1'] =$lecturer->getStringPanel_1();     // A string intended of the Left Hand Side of the page
+                    $data['siteTitle']=$home->getSiteTitle(); 
+                    $data['loginContent']=$home->getLoginContent();       // an array of menu items and associated URLS
+                    $data['panelHead_1']=$Register->getPanelHead_1(); 
+                    $data['stringPanel_1'] =$Register->getStringPanel_1();     // A string intended of the Left Hand Side of the page
                     $this->data=$data; //put the $data array into the class property do it can be accedded in DEBUG mode
                     
                     //display the view
-                    include_once 'views/view_1_panel.php'; //load the view
+                    include_once 'views/register.php'; //load the view
                     break; 
                 default:
                     //get the model

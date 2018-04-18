@@ -79,6 +79,42 @@ a {
 	color:#fff;
 }
 
+.login_view {
+	width:400px;
+	margin:0px auto;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+}
+.login_view .panelHead {
+	border-bottom: 1px solid #ccc;
+}
+.panelHead h1 {
+	padding: 10px;
+	color:   #4d5656  ;
+}
+.login_view input {
+	box-sizing: border-box;
+}
+.login_view input[type="text"], .login_view input[type="password"]{
+	display: block;
+	width:95%;
+	padding: 10px;
+	border-radius: 3px;
+	margin:5px auto 5px auto;
+	border: 1px solid  #f2f3f4 ;
+}
+.login_view input[type="submit"] {
+	width:25%;
+	padding:10px;
+	float:right;
+	border:1px solid #555;
+	margin:10px 10px 10px 0px;
+	cursor: pointer;
+}
+.stringPanel {
+	margin-top: 20px;
+}
+
 .main {
 	*padding:10px 0px;
 }

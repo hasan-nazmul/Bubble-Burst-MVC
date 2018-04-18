@@ -15,6 +15,14 @@ class Home extends Model{
 	private $session;
 
 
+	private $panelHead_1;
+	private $stringPanel_1;
+
+	private $panelHead_2;
+	private $stringPanel_2;
+
+
+
 	function __construct($pageID, $session){
 		$this->session = $session;
 		parent::__construct($this->session->getLoggedIN());
@@ -38,14 +46,51 @@ class Home extends Model{
 		$this->setAboutMeIconURL();
 		$this->setAboutMeTitle();
 		$this->setAboutMeString();
+
+		$this->setPanelHead_1();
+		$this->setStringPanel_1();
+		
+		$this->setPanelHead_2();
+		$this->setStringPanel_2();
 	}
 
+	public function setPanelHead_1(){
+		if ($this->loggedin) {
+			$this->panelHead_1 = 'Bubble Burst';
+		}else{
+			$this->panelHead_1 = 'Error - Please Log In';
+		}
+	}
+
+	public function setStringPanel_1(){
+		if ($this->loggedin) {
+			$this->stringPanel_1 = file_get_contents('forms/form_game_board.html');
+		}else{
+			$this->stringPanel_1 = file_get_contents('forms/login_form_view_1.html');
+		}
+	}
+
+	public function setPanelHead_2(){
+		if ($this->loggedin) {
+			$this->panelHead_2 = 'Bubble Chat';
+		}else{
+			$this->panelHead_2 = 'Register';
+		}
+	}
+
+	public function setStringPanel_2(){
+		if ($this->loggedin) {
+			$this->stringPanel_2 = file_get_contents('forms/form_chat.html');
+		}else{
+			$this->stringPanel_2 = file_get_contents('forms/form_register.php');
+		}
+	}
 
 	public function setSiteTitle(){
 		if($this->loggedin){
 			$this->siteTitle = 'Welcome to Bubble Burst';
 		}else{
-			$this->siteTitle = 'Welcome to Bubble Burst - Please Login';
+			$this->siteTitle = 'Welcome to Bubble Burst - Please Log In';
 		}
 	}
 	
@@ -95,6 +140,11 @@ class Home extends Model{
 	public function getAboutMeIcon(){return $this->urlAboutMeIcon;}
 	public function getAboutMeTitle(){return $this->aboutMeTitle;}
 	public function getAboutMeString() {return $this->aboutMeMessage;}
+
+	public function getPanelHead_1(){return $this->panelHead_1;}
+	public function getStringPanel_1(){return $this->stringPanel_1;}
+	public function getPanelHead_2(){return $this->panelHead_2;}
+	public function getStringPanel_2(){return $this->stringPanel_2;}
 	
 }
 
