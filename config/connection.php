@@ -7,6 +7,6 @@
 $DBServer = 'localhost'; // e.g 'localhost' or '127.0.0.1'
 $DBUser   = 'root';  //the MySQL user name
 $DBPass   = '';  //the MySQL user password
-$DBName   = ''; //the MySQL database name
+$DBName   = 'bubble_burst'; //the MySQL database name
 //
 ?>

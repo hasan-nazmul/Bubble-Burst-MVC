@@ -1,6 +1,7 @@
 .game_board {
-    background-color: #ccc;
+    background-color: #fff;
     margin: 30px 0px;
+    padding: 10px;
 }
 
 .game_board table, td, th {    
@@ -19,6 +20,7 @@
 }
 .game_board td {
   font-size:0.7em;
+  text-align: center;
 }
 .game_board input[type="radio"] {
 	display:block;

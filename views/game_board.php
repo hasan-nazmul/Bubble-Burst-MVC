@@ -1,6 +1,7 @@
 <?php
 	$siteTitle = $data['siteTitle'];
-	$menuNavHolder = $data['loginContent'];
+	//$menuNavHolder = $data['loginContent'];
+	$menuNav = $data['menuNav']; 
 	$panelHead_1 = $data['panelHead_1'];
 	$stringPanel_1 = $data['stringPanel_1'];
 	$panelHead_2 = $data['panelHead_2'];
@@ -12,8 +13,8 @@
 <head>
 	<title><?php echo $siteTitle; ?></title>
 	<link rel="stylesheet" type="text/css" href="css/default.css">
-	<link rel="stylesheet" type="text/css" href="css/games.css">
-	<link rel="stylesheet" type="text/css" href="css/chats.css">
+	<link rel="stylesheet" type="text/css" href="css/game.css">
+	<link rel="stylesheet" type="text/css" href="css/chat.css">
 	<script>
         function IsClicked(){
           var radios = document.getElementsByName("grid");
@@ -45,7 +46,11 @@
 				<h1>Company Logo</h1>
 			</div>
 			<div class="login">
-				<?php echo $menuNavHolder; ?>
+				<nav>
+					<ul>
+						<?php foreach($menuNav as $menuItem){echo "<li>$menuItem</li>";} //populate the navbar menu items?>
+					</ul>
+				</nav>
 				<div class="clearfix"></div>
 			</div>
 			<div class="clearfix"></div>
@@ -53,17 +58,16 @@
 	</div>
 
 	<div class="main">
-		<div class="game_board">
-			<div class="shell">
-				<div class="left">
-					<?php echo $stringPanel_1; ?>
-				</div>
-
-				<div class="right">
-					<?php echo $stringPanel_2; ?>
-				</div>
+		<div class="shell">
+			<div class="left">
+				<?php echo $stringPanel_1; ?>
 				<div class="clearfix"></div>
 			</div>
+
+			<div class="right">
+				<?php echo $stringPanel_2; ?>
+			</div>
+			<div class="clearfix"></div>
 		</div>
 	</div>
 

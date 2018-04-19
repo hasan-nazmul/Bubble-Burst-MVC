@@ -12,6 +12,8 @@
 		private $panelHead_2;
 		private $stringPanel_2;
 
+		private $loginContent;
+
 		//Properties used by class to manage view content and database interactions
 		private $pageID;
 		private $db;
@@ -62,12 +64,14 @@
                             $this->session->setUserAuthorisation(1);
                             $this->session->setUserID($this->userID);
                             //$this->stringPanel_1= file_get_contents('forms/form_game_board.html');
-                            $this->stringPanel_1='Welcome, '.$this->userFirstName.', to Bubble Burst.';
+                            $this->stringPanel_1= file_get_contents('forms/form_game_board.html');
+                            $this->stringPanel_2= file_get_contents('forms/form_chat.html');
+                            //$this->loginContent = file_get_contents('forms/nav.html');
                         }
                         else{
                             $this->session->setLoggedin(FALSE);  //user is not logged on
                             $this->session->setUserAuthorisation(0); //privileges set to none
-                            $this->stringPanel_1='Login NOT Successful!</br>'.$this->loginError;
+                            $this->stringPanel_1='Login NOT Successful!</br>'.$this->sql. '</br>' .$this->loginError;
                         }
 						break;
 					case "logout":
@@ -106,7 +110,7 @@
             $this->password=hash('ripemd160', $this->password);
             
             //query the database
-            $sql='SELECT  * FROM bubble_burst WHERE UserID="'.$this->userID.'" AND Password="'.$this->password.'"';
+            $sql='SELECT  * FROM users WHERE UserID="'.$this->userID.'" AND Password="'.$this->password.'"';
             $this->sql=$sql; //for diagnostic purposes
             
             //check if any rows returned from query
@@ -136,9 +140,10 @@
         }
 
         public function getPanelHead_1(){return $this->panelHead_1;}
-        public function getPanelString_1(){return $this->stringPanel_1;}
+        public function getStringPanel_1(){return $this->stringPanel_1;}
         public function getPanelHead_2(){return $this->panelHead_2;}
-        public function getPanelString_2(){return $this->stringPanel_2;}
+        public function getStringPanel_2(){return $this->stringPanel_2;}
+        public function getLoginContent(){return $this->loginContent;}
         public function getUserID(){return $this->userID;}
         public function getSQL(){return $this->sql;}
 

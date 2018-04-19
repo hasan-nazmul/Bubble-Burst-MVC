@@ -21,6 +21,7 @@ class Home extends Model{
 	private $panelHead_2;
 	private $stringPanel_2;
 
+	private $menuNav;
 
 
 	function __construct($pageID, $session){
@@ -52,6 +53,61 @@ class Home extends Model{
 		
 		$this->setPanelHead_2();
 		$this->setStringPanel_2();
+
+		$this->setMenuNav();
+	}
+
+	public function setMenuNav(){
+		if($this->loggedin){
+			switch ($this->pageID) {
+				case 'home':
+					$this->menuNav[0] = '<a href="'.$_SERVER['PHP_SELF'].'?pageID=home">Home</a>';
+					$this->menuNav[1] = '<a href="'.$_SERVER['PHP_SELF'].'?pageID=my_account">Account</a>';
+					$this->menuNav[2] = '<a href="'.$_SERVER['PHP_SELF'].'?pageID=leaderboard">Leaderboard</a>';
+					$this->menuNav[3] = '<a href="'.$_SERVER['PHP_SELF'].'?pageID=logout">Logout</a>';
+					break;
+				case 'my_account':
+					$this->menuNav[0] = '<a href="'.$_SERVER['PHP_SELF'].'?pageID=home">Home</a>';
+					$this->menuNav[1] = '<a href="'.$_SERVER['PHP_SELF'].'?pageID=logout">Logout</a>';
+					break;
+					break;
+				case 'logout':
+					$this->menuNav[0] = '<form class="frmLogin" method="POST" action="index.php?pageID=process_login">
+	<input type="text" name="username" id="username" placeholder="Username">
+	<input type="password" name="password" id="password" placeholder="Password">
+	<input type="submit" name="login" class="btnLogin" value="Login">
+</form><div class="clearfix"></div>';
+					break;
+				case 'leaderboard':
+					$this->menuNav[0] = '<a href="'.$_SERVER['PHP_SELF'].'?pageID=home">Home</a>';
+					$this->menuNav[1] = '<a href="'.$_SERVER['PHP_SELF'].'?pageID=my_account">Account</a>';
+					$this->menuNav[2] = '<a href="'.$_SERVER['PHP_SELF'].'?pageID=leaderboard">Leaderboard</a>';
+					$this->menuNav[3] = '<a href="'.$_SERVER['PHP_SELF'].'?pageID=logout">Logout</a>';
+					break;
+				default:
+					$this->menuNav[0] = '<a href="'.$_SERVER['PHP_SELF'].'?pageID=home">Home</a>';
+					$this->menuNav[1] = '<a href="'.$_SERVER['PHP_SELF'].'?pageID=my_account">Account</a>';
+					$this->menuNav[2] = '<a href="'.$_SERVER['PHP_SELF'].'?pageID=leaderboard">Leaderboard</a>';
+					$this->menuNav[3] = '<a href="'.$_SERVER['PHP_SELF'].'?pageID=logout">Logout</a>';
+					break;
+			}
+		}else{
+			switch ($this->pageID) {
+				case 'process_login':
+					$this->menuNav[0] = '<a href="'.$_SERVER['PHP_SELF'].'?pageID=home">Home</a>';
+					$this->menuNav[1] = '<a href="'.$_SERVER['PHP_SELF'].'?pageID=my_account">Account</a>';
+					$this->menuNav[2] = '<a href="'.$_SERVER['PHP_SELF'].'?pageID=leaderboard">Leaderboard</a>';
+					$this->menuNav[3] = '<a href="'.$_SERVER['PHP_SELF'].'?pageID=logout">Logout</a>';
+					break;
+				default:
+					$this->menuNav[0] = '<form class="frmLogin" method="POST" action="index.php?pageID=process_login">
+	<input type="text" name="username" id="username" placeholder="Username">
+	<input type="password" name="password" id="password" placeholder="Password">
+	<input type="submit" name="login" class="btnLogin" value="Login">
+</form><div class="clearfix"></div>';
+					break;
+				}
+			}
 	}
 
 	public function setPanelHead_1(){
@@ -131,7 +187,7 @@ class Home extends Model{
 	}
 	
 
-	
+	public function getMenuNav(){return $this->menuNav;}
 	public function getSiteTitle(){return $this->siteTitle;}
 	public function getLoginContent(){return $this->loginContent;}
 	public function getWelcomeTitle(){return $this->welcomeTitle;}

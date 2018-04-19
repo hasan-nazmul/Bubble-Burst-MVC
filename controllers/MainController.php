@@ -56,11 +56,76 @@ class MainController extends Controller{
                switch ($this->pageID) {           
                 case "home":
                     //get the model
+                    $home=new Home($this->pageID,$this->session);
+                    $game = new GameBoard($this->pageID, NULL, $this->db,$this->session);
+
+                    //get the content from the model - put into the $data array for the view:
+                    $data=[];  //initialise an empty data array
+                    $data['siteTitle']=$home->getSiteTitle(); 
+                    $data['loginContent']=$home->getLoginContent();       // an array of menu items and associated URLS
+
+                    $data['menuNav']=$home->getMenuNav(); 
+
+                    $data['panelHead_1']=$home->getPanelHead_1(); 
+                    $data['stringPanel_1'] =$home->getStringPanel_1();     // A string intended of the Left Hand Side of the page
+                    $data['panelHead_2']=$home->getPanelHead_2(); 
+                    $data['stringPanel_2'] =$home->getStringPanel_2();
+
+
+                    $this->data=$data; //put the $data array into the class property do it can be accedded in DEBUG mode
+                    
+                    //display the view
+                    include_once 'views/game_board.php';   
+                    break;
+                case "my_account":
                     //get the model
                     $home=new Home($this->pageID,$this->session);
 
                     //get the content from the model - put into the $data array for the view:
                     $data=[];  //initialise an empty data array
+                    $data['siteTitle']=$home->getSiteTitle(); 
+
+                    $data['menuNav']=$home->getMenuNav(); 
+
+                    $data['panelHead_1']='Uder Construction'; 
+                    $data['stringPanel_1'] ='Account info coming soon...';     // A string intended of the Left Hand Side of the page
+                    $data['panelHead_2']='Uder Construction'; 
+                    $data['stringPanel_2'] ='Happy Hanukkah';
+
+
+                    $this->data=$data; //put the $data array into the class property do it can be accedded in DEBUG mode
+                    
+                    //display the view
+                    include_once 'views/game_board.php';   
+                    break;        
+                case "leaderboard":
+                    //get the model
+                    $home=new Home($this->pageID,$this->session);
+
+                    //get the content from the model - put into the $data array for the view:
+                    $data=[];  //initialise an empty data array
+                    $data['siteTitle']=$home->getSiteTitle(); 
+
+                    $data['menuNav']=$home->getMenuNav(); 
+
+                    $data['panelHead_1']='Uder Construction'; 
+                    $data['stringPanel_1'] ='Leadeboard Coming soon...';     // A string intended of the Left Hand Side of the page
+                    $data['panelHead_2']='Uder Construction'; 
+                    $data['stringPanel_2'] ='Happy Gaming';
+
+
+                    $this->data=$data; //put the $data array into the class property do it can be accedded in DEBUG mode
+                    
+                    //display the view
+                    include_once 'views/game_board.php';   
+                    break;              
+                case "logout":
+                    //get the models
+                    $game = new GameBoard($this->pageID, NULL, $this->db,$this->session);
+                    $this->loggedin=$game->getLoggedin(); //update the status of the login variable
+                    $home=new Home($this->pageID,$this->session);    
+                    
+                    $data['menuNav']=$home->getMenuNav(); 
                     $data['siteTitle']= $home->getSiteTitle(); 
                     $data['loginContent'] = $home->getLoginContent();
                     $data['welcomeTitle'] = $home->getWelcomeTitle();
@@ -72,88 +137,24 @@ class MainController extends Controller{
                     $this->data=$data; //put the $data array into the class property do it can be accedded in DEBUG mode
                     
                     //display the view
-                    include_once 'views/home.php'; 
-                    break;
-                case "account":
-                    //get the model
-                    $home=new Home($this->pageID,$this->session);                   
-                    
-                    //get the content from the model - put into the $data array for the view:
-                    $data=[];  //initialise an empty data array
-                    $data['pageTitle']=$home->getPageTitle(); 
-                    $data['menuNav']   =$home->getMenuNav();       // an array of menu items and associated URLS
-                    $data['stringPanel_1'] ='under construction';     // A string intended of the Left Hand Side of the page
-                    $data['stringPanel_2'] ='ACCOUNT Page under construction';     // A string intended of the Left Hand Side of the page
-                    $data['stringPanel_3'] ='under construction';     // A string intended of the Right Hand Side of the page
-                    $data['panelHead_1']='<h3>under construction</h3>';// A string containing the LHS panel heading/title
-                    $data['panelHead_2']='<h3>under construction</h3>';// A string containing the ~MIDDLE panel heading/title 
-                    $data['panelHead_3']='<h3>under construction</h3>';// A string containing the RHS panel heading/title
-                    $this->data=$data; //put the $data array into the class property do it can be accedded in DEBUG mode
-                                    
-                    
-                    //display the view
-                    include_once 'views/view_3_panel.php'; //load the view
-                    break;         
-                case "leaderboard":
-                    //get the selected student ID from the transcript query form
-                    $studentID=$_POST['studentID'];
-                    
-                    //get the models
-                    $home=new Home($this->pageID,$this->session); 
-                    $student=new Student($this->pageID,$studentID,$this->db,$this->session); 
-                    
-                    //get the content from the models - put into the $data array for the view:
-                    $data=[];  //initialise an empty data array
-                    $data['pageTitle']=$home->getPageTitle(); 
-                    $data['menuNav']   =$home->getMenuNav();       // an array of menu items and associated URLS
-                    $data['panelHead_1']=$student->getPanelHead_1(); 
-                    $data['stringPanel_1'] =$student->getStringPanel_1();     // A string intended of the Left Hand Side of the page
-                    $data['panelHead_2']=$student->getPanelHead_2();// A string containing the RHS panel heading/title
-                    $data['stringPanel_2'] =$student->getStringPanel_2();     // A string intended of the Right Hand Side of the page
-                    $this->data=$data; //put the $data array into the class property do it can be accedded in DEBUG mode
-                                     
-                    //display the view
-                    include_once 'views/view_2_panel.php'; //load the view
-                    break;                                                                 
-                case "logout":
-                    //get the models
-                    $lecturer = new Lecturer($this->pageID, NULL, $this->db,$this->session);
-                    $this->loggedin=$lecturer->getLoggedin(); //update the status of the login variable
-                    $home=new Home($this->pageID,$this->session);    
-                    
-                    //get the content from the model - put into the $data array for the view:
-                    $data=[];  //initialise an empty data array
-                    $data['pageTitle']=$home->getPageTitle(); 
-                    $data['menuNav']   =$home->getMenuNav();       // an array of menu items and associated URLS
-                    $data['stringPanel_1'] =$home->getStringPanel_1();     // A string intended of the Left Hand Side of the page
-                    $data['stringPanel_2'] =$lecturer->getStringPanel_1();     // A string intended of the Left Hand Side of the page
-                    $data['stringPanel_3'] =$home->getStringPanel_3();     // A string intended of the Right Hand Side of the page
-                    $data['panelHead_1']=$home->getPanelHead_1();// A string containing the LHS panel heading/title
-                    $data['panelHead_2']=$lecturer->getPanelHead_1();// A string containing the LHS panel heading/title
-                    $data['panelHead_3']=$home->getPanelHead_3();// A string containing the RHS panel heading/title
-                    $this->data=$data; //put the $data array into the class property do it can be accedded in DEBUG mode
-                    
-                    //display the view
-                    include_once 'views/view_3_panel.php'; //load the view
+                    include_once 'views/home.php'; //load the view
                     break;
                 default:
                     //get the model
                     $home=new Home($this->pageID,$this->session);
+                    $game = new GameBoard($this->pageID, NULL, $this->db,$this->session);
 
                     //get the content from the model - put into the $data array for the view:
                     $data=[];  //initialise an empty data array
-                    $data['siteTitle']= $home->getSiteTitle(); 
-                    $data['loginContent'] = $home->getLoginContent();
-                    $data['panelHead_1'] = $home->getPanelHead_1();
-                    $data['stringPanel_1'] = $home->getStringPanel_1();
-                    $data['panelHead_2'] = $home->getPanelHead_2();
-                    $data['stringPanel_2'] = $home->getStringPanel_2();
-                    //$data['welcomeTitle'] = $home->getWelcomeTitle();
-                    //$data['welcomeString'] = $home->getWelcomeString();
-                    //$data['slideShow'] = $home->getSlideShow();
-                    //$data['aboutMeIcon'] = $home->getAboutMeIcon();
-                    //$data['aboutMeTitle'] = $home->getAboutMeTitle();
-                    //$data['aboutMeString'] = $home->getAboutMeString();
+                    $data['siteTitle']=$home->getSiteTitle(); 
+                    $data['loginContent']=$home->getLoginContent();       // an array of menu items and associated URLS
+
+                    $data['menuNav']=$home->getMenuNav(); 
+
+                    $data['panelHead_1']=$home->getPanelHead_1(); 
+                    $data['stringPanel_1'] =$home->getStringPanel_1();     // A string intended of the Left Hand Side of the page
+                    $data['panelHead_2']=$home->getPanelHead_2(); 
+                    $data['stringPanel_2'] =$home->getStringPanel_2();
 
 
                     $this->data=$data; //put the $data array into the class property do it can be accedded in DEBUG mode
@@ -165,21 +166,18 @@ class MainController extends Controller{
             }else {
                 //get the model
                     $home=new Home($this->pageID,$this->session);
-
+                    $game = new GameBoard($this->pageID, NULL, $this->db,$this->session);
                     //get the content from the model - put into the $data array for the view:
                     $data=[];  //initialise an empty data array
-                    $data['siteTitle']= $home->getSiteTitle(); 
-                    $data['loginContent'] = $home->getLoginContent();
-                    $data['panelHead_1'] = $home->getPanelHead_1();
-                    $data['stringPanel_1'] = $home->getStringPanel_1();
-                    $data['panelHead_2'] = $home->getPanelHead_2();
-                    $data['stringPanel_2'] = $home->getStringPanel_2();
-                    //$data['welcomeTitle'] = $home->getWelcomeTitle();
-                    //$data['welcomeString'] = $home->getWelcomeString();
-                    //$data['slideShow'] = $home->getSlideShow();
-                    //$data['aboutMeIcon'] = $home->getAboutMeIcon();
-                    //$data['aboutMeTitle'] = $home->getAboutMeTitle();
-                    //$data['aboutMeString'] = $home->getAboutMeString();
+                    $data['siteTitle']=$home->getSiteTitle(); 
+                    $data['loginContent']=$home->getLoginContent();       // an array of menu items and associated URLS
+
+                    $data['menuNav']=$home->getMenuNav(); 
+
+                    $data['panelHead_1']=$game->getPanelHead_1(); 
+                    $data['stringPanel_1'] =$game->getStringPanel_1();     // A string intended of the Left Hand Side of the page
+                    $data['panelHead_2']=$game->getPanelHead_2(); 
+                    $data['stringPanel_2'] =$game->getStringPanel_2();
 
 
                     $this->data=$data; //put the $data array into the class property do it can be accedded in DEBUG mode
@@ -198,11 +196,14 @@ class MainController extends Controller{
                     //get the content from the model - put into the $data array for the view:
                     $data=[];  //initialise an empty data array
                     $data['siteTitle']=$home->getSiteTitle(); 
-                    $data['loginContent']=$home->getLoginContent();       // an array of menu items and associated URLS
+                    $data['loginContent']=$game->getLoginContent();       // an array of menu items and associated URLS
+
+                    $data['menuNav']=$home->getMenuNav(); 
+
                     $data['panelHead_1']=$game->getPanelHead_1(); 
-                    $data['stringPanel_1'] =$game->getPanelString_1();     // A string intended of the Left Hand Side of the page
+                    $data['stringPanel_1'] =$game->getStringPanel_1();     // A string intended of the Left Hand Side of the page
                     $data['panelHead_2']=$game->getPanelHead_2(); 
-                    $data['stringPanel_2'] =$game->getPanelString_2();
+                    $data['stringPanel_2'] =$game->getStringPanel_2();
                     $this->data=$data; //put the $data array into the class property do it can be accedded in DEBUG mode
 
                     //display the view
@@ -216,7 +217,7 @@ class MainController extends Controller{
                     //get the content from the model - put into the $data array for the view:
                     $data=[];  //initialise an empty data array
                     $data['pageTitle']=$home->getPageTitle(); 
-                    $data['menuNav']   =$home->getMenuNav();       // an array of menu items and associated URLS
+                    $data['menuNav']=$home->getMenuNav();       // an array of menu items and associated URLS
                     $data['stringPanel_1'] =$lecturer->getStringPanel_1();     // A string intended of the Left Hand Side of the page
                     //$data['stringPanel_2'] =$lecturer->getStringPanel_2();     // A string intended of the Left Hand Side of the page
 
@@ -258,6 +259,7 @@ class MainController extends Controller{
                     $data['aboutMeIcon'] = $home->getAboutMeIcon();
                     $data['aboutMeTitle'] = $home->getAboutMeTitle();
                     $data['aboutMeString'] = $home->getAboutMeString();
+                    $data['menuNav']=$home->getMenuNav();
                     $this->data=$data; //put the $data array into the class property do it can be accedded in DEBUG mode
                     
                     //display the view

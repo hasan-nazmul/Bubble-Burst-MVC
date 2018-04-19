@@ -2,6 +2,7 @@
 
 	$siteTitle = $data['siteTitle'];
 	$menuNavHolder = $data['loginContent'];
+	$menuNav=$data['menuNav'];
 	$panelHead_1 = $data['panelHead_1'];
 	$stringPanel_1 = $data['stringPanel_1'];
 
@@ -22,7 +23,11 @@
 				<h1>Company Logo</h1>
 			</div>
 			<div class="login">
-				<?php echo $menuNavHolder; ?>
+				<nav>
+					<ul>
+						<?php foreach($menuNav as $menuItem){echo "<li>$menuItem</li>";} //populate the navbar menu items?>
+					</ul>
+				</nav>
 				<div class="clearfix"></div>
 			</div>
 			<div class="clearfix"></div>

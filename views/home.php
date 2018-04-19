@@ -2,6 +2,7 @@
 
 	$siteTitle = $data['siteTitle'];
 	$menuNavHolder = $data['loginContent'];
+	$menuNav=$data['menuNav']; 
 	$welcomeTitle = $data['welcomeTitle'];
 	$welcomeString = $data['welcomeString'];
 	$slideShow = $data['slideShow'];
@@ -26,7 +27,12 @@
 				<h1>Company Logo</h1>
 			</div>
 			<div class="login">
-				<?php echo $menuNavHolder; ?>
+				<nav>
+					<ul>
+						<?php foreach($menuNav as $menuItem){echo "<li>$menuItem</li>";} //populate the navbar menu items?>
+					</ul>
+				</nav>
+				<?php //echo $menuNavHolder; ?>
 				<div class="clearfix"></div>
 			</div>
 			<div class="clearfix"></div>
