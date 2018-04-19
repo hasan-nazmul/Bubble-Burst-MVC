@@ -1,7 +1,7 @@
 <?php
 
 	$siteTitle = $data['siteTitle'];
-	$menuNavHolder = $data['loginContent'];
+	//$menuNavHolder = $data['loginContent'];
 	$menuNav=$data['menuNav']; 
 	$welcomeTitle = $data['welcomeTitle'];
 	$welcomeString = $data['welcomeString'];
@@ -24,7 +24,7 @@
 	<div class="header">
 		<div class="shell">
 			<div class="logo">
-				<h1>Company Logo</h1>
+				<h1><a href="index.php?pageID=home">Company Logo</a></h1>
 			</div>
 			<div class="login">
 				<nav>

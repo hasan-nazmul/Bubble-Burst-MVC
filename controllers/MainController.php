@@ -237,7 +237,7 @@ class MainController extends Controller{
                     //get the content from the model - put into the $data array for the view:
                     $data=[];  //initialise an empty data array
                     $data['siteTitle']=$home->getSiteTitle(); 
-                    $data['loginContent']=$home->getLoginContent();       // an array of menu items and associated URLS
+                    $data['menuNav']=$home->getMenuNav();       // an array of menu items and associated URLS
                     $data['panelHead_1']=$Register->getPanelHead_1(); 
                     $data['stringPanel_1'] =$Register->getStringPanel_1();     // A string intended of the Left Hand Side of the page
                     $this->data=$data; //put the $data array into the class property do it can be accedded in DEBUG mode

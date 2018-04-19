@@ -24,6 +24,9 @@ a {
 .logo h1 {
 	color:#edecec;
 }
+.logo a {
+	color:#fff;
+}
 .header .login {
 	width:50%;
 	float: right;
