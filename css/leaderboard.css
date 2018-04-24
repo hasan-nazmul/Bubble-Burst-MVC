@@ -1,0 +1,33 @@
+.leaderboard {
+	background-color: #fff;
+	margin: 20px 0px;
+	padding: 0px 0px 5px 0px;
+}
+.leaderboard_header {
+	border-bottom:1px solid #ececeb;
+	background-color: #e5e5e5;
+}
+.leaderboard_header h1, h2, h3, h4, h5 {
+	font-size: 1.4em;
+	padding: 15px;
+}
+.leaderboard_content {
+
+}
+
+.leaderboard table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 98%;
+    margin:10px auto 10px auto;
+}
+
+.leaderboard td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+.leaderboard tr:nth-child(even) {
+    background-color: #dddddd;
+}
