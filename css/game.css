@@ -1,9 +1,17 @@
-.game_board {
-    background-color: #fff;
-    margin: 30px 0px;
-    padding: 10px;
+.game_board_header {
+    border-bottom: 1px solid #ececeb;
+    background-color: #e5e5e5;
 }
-
+.game_board_header h1, h2, h3, h4, h5 {
+    font-size: 1.2em;
+    padding: 15px;
+}
+.game_board {
+  padding: 15px;
+}
+.game_board h3 {
+    padding:0px 0px 15px 0px;
+}
 .game_board table, td, th {    
     border: 1px solid #ddd;
     text-align: left;
@@ -24,12 +32,16 @@
 }
 .game_board input[type="radio"] {
 	display:block;
-	width:100%;
-  height:100%;
+	width:90%;
+  height:90%;
+  margin: auto;
 }
 .game_board input[type="submit"]{
-  margin:10px 0px 10px 0px;
-  padding:10px;
+  margin:15px 0px 15px 0px;
+  padding:10px 30px;
   float:right;
   cursor:pointer;
+  border:1px solid #ff8b00;
+  color:#B96200;
+  background-color: #ffc27a;
 }

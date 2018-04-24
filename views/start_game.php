@@ -1,37 +1,26 @@
 <?php
+
+
 	$siteTitle = $data['siteTitle'];
 	//$menuNavHolder = $data['loginContent'];
 	$menuNav = $data['menuNav']; 
-	$panelHead_1 = $data['panelHead_1'];
+	//$panelHead_1 = $data['panelHead_1'];
 	$stringPanel_1 = $data['stringPanel_1'];
-	$panelHead_2 = $data['panelHead_2'];
-	$stringPanel_2 = $data['stringPanel_2'];
+	//$panelHead_2 = $data['panelHead_2'];
+	//$stringPanel_2 = $data['stringPanel_2'];
 
 	//$stringPanel_1_game = $data['stringPanel_1_game'];
 
 	$userFirstName = $data['userFirstName'];
 	$userSurName = $data['userSurName'];
 
-	$message = $data['error_message'];
-	echo "Error message: " .$message;
-
-	$player_lives = $data['player_lives'];
-
 	//$GameValues = $data['gameValue'];
-
-	//$GameID = $data['NewGameID'];
-	//echo "GameID: " .$GameID;
-
-	//$GameID=hash('ripemd160', $GameID);
-	//setcookie("TempCookieID","NAZMUL",time()+10); //cookietime is in seconds (1 hour)
-
 	//echo '<h4>$_COOKIE Array</h4>';
     //echo '<table class="table table-bordered"><thead><tr><th>KEY</th><th>VALUE</th></tr></thead>';
     //foreach($_COOKIE as $key=>$value){echo '<tr><td>'.$key.'</td><td>'.$value.'</td></tr>';}
     //echo '</table>';
     
     //echo "<hr>";
-
 
 
 ?>
@@ -66,9 +55,6 @@
         }
 
     </script>
-
-
-    
 </head>
 <body>
 		
@@ -91,28 +77,15 @@
 	</div>
 
 	<div class="main">
-		<div class="shell">
-
-			<div class="left">
-				<div class="game_board_header">
-					<h3><?php echo $panelHead_1; ?></h3>
-				</div>
-				<div class="game_board">
+		<div class="start_game">
+			<div class="shell">
+				<div class="column_one">
+					<div class="notification">
+						<p>Welcome, <span class="current_user"><?php echo $userFirstName . " " .$userSurName; ?></span></span></p>
+					</div>
 					<?php echo $stringPanel_1; ?>
 				</div>
-				<div class="clearfix"></div>
 			</div>
-
-			<div class="right">
-				<div class="chat">
-					<div class="chat_header">
-						<h1>Welcome, <span class="current_user"><?php echo $userFirstName . " " .$userSurName; ?></span></h1>
-					</div>
-					<?php echo $stringPanel_2; ?>
-					<div class="clearfix"></div>
-				</div>
-			</div>
-			<div class="clearfix"></div>
 		</div>
 	</div>
 

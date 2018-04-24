@@ -4,8 +4,9 @@
 
 	$data = array();
 
-	for ($i=0; $i < 100; $i++) { 
-		$data[] = (0);
+	for ($i=0; $i < 100; $i++) {
+		//initialize all 100 numbers with zero
+		$data[$i] = 0;
 	}
 
 
@@ -28,6 +29,7 @@
 			}
 		}
 
+		//Checks if the increased position in data[] array is equal to 0 if so assign the value 1 as an enemy
 		if($data[$INCREASE] == 0){
 			$data[$INCREASE] = 1;
 		}
@@ -37,7 +39,7 @@
 	}
 
 	foreach ($data as $key => $value) {
-	    //echo "{$key} => {$value} </br>";
+	    echo "{$key} => {$value} </br>";
 	}
 
 ?>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Welcome to Bubble Burst</title>
+	<link rel="stylesheet" type="text/css" href="../css/default.css">
+	<link rel="stylesheet" type="text/css" href="../css/game.css">
+	<link rel="stylesheet" type="text/css" href="../css/chat.css">
+	<script>
+        function IsClicked(){
+          var radios = document.getElementsByName("grid");
+
+         for (var i = 0, len = radios.length; i < len; i++) {
+              if (radios[i].checked) {
+                  return true;
+              }
+         }
+         return false;
+        }
+
+        function validate(){
+            if(IsClicked() != true){
+              document.getElementById("p1").innerHTML = "Error - please select atleast one grid on the game board!";
+              return false;
+            }else{
+              document.getElementById("p1").innerHTML = "Well done you have clicked a grid, but which one?";
+            }
+          return true;
+        }
+
+    </script>
+
+
+    
+</head>
+<body>
+		
+
+	<div class="header">
+		<div class="shell">
+			<div class="logo">
+				<h1><a href="index.php?pageID=home">Company Logo</a></h1>
+			</div>
+			<div class="login">
+				<nav>
+					<ul>
+						<li><a href="/Bubble-Burst-MVC/index.php?pageID=home">Home</a></li><li><a href="/Bubble-Burst-MVC/index.php?pageID=my_account">Account</a></li><li><a href="/Bubble-Burst-MVC/index.php?pageID=leaderboard">Leaderboard</a></li><li><a href="/Bubble-Burst-MVC/index.php?pageID=logout">Logout</a></li>					</ul>
+				</nav>
+				<div class="clearfix"></div>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+
+	<div class="main">
+		<div class="shell">
+
+			<div class="left">
+				<div class="game_board_header">
+					<h3>Bubble Burst [version: 1.0]</h3>
+				</div>
+				<div class="game_board">
+					<div class="return_home"><form method="post" action="'.$_SERVER['PHP_SELF'].'?pageID=home"><input type="submit" name="submit" value="Return Home"></form></div>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+
+			<div class="right">
+				<div class="chat">
+					<div class="chat_header">
+						<h1>Welcome, <span class="current_user">Alice Smith</span></h1>
+					</div>
+					
+
+        <div class="display">
+        	<p class="message"><span class="time">[12:30pm] </span> <span class="user">Bob: </span> <span>Hello, Howdy?</span></p>
+            <p class="message"><span class="time">[12:31pm] </span> <span class="user">Alice: </span> <span>Hello, it's been so long. We shall play a game or two.</span></p>
+            <p class="message"><span class="time">[12:32pm] </span> <span class="user">Bob: </span> <span>Yes, shall we begin?</span></p>
+            <p class="message"><span class="time">[12:33pm] </span> <span class="user">Bob: </span> <span class="made_move">Moved x:4, y:3</span></p>
+            <p class="message"><span class="time">[12:33pm] </span> <span class="user">Bob: </span> <span class="made_move">Moved x:6, y:1</span></p>
+            <p class="message"><span class="time">[12:34pm] </span> <span class="user">Bob: </span> <span class="made_move">Moved x:7, y:5</span></p>
+            <p class="message"><span class="time">[12:34pm] </span> <span class="user">Bob: </span> <span class="enemy_encounter">Hit Enemy : 0.5 Lives Deducted</span></p>
+            <p class="message"><span class="time">[12:35pm] </span> <span class="user">Alice: </span> <span class="made_move">Moved x:9, y:1</span></p>
+            <p class="message"> <span id="p1"></span></p>
+        </div>
+        <div class="console">
+        	<form>
+            	<input type="text" name="console" id="console" placeholder="Message">
+            </form>
+        </div>
+  					<div class="clearfix"></div>
+				</div>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+
+	<footer class="footer">
+		<div class="shell">
+			<div class="copy">
+				<div class="content">
+					<p>Copyright &copy; 2018 Nazmul Hasan</p>
+				</div>
+			</div>
+
+			<div class="social">
+				<div class="content">
+					<ul>
+						<li><a href="facebook">f</a></li>
+						<li><a href="twitter">t</a></li>
+						<li><a href="insta">i</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</footer>
+</body>
+</html>

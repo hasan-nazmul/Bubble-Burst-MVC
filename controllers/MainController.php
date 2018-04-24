@@ -18,6 +18,11 @@ class MainController extends Controller{
         private $stringPanel_1;
         private $panelHead_2;
         private $stringPanel_2;
+
+        private $fName;
+        private $sName;
+
+        
     
 	//constructor
 	function __construct($db, $session){  
@@ -33,6 +38,9 @@ class MainController extends Controller{
            $this->debugInfo(); //if debug is turned on display the debug info
            
 	}//construct the main controller object
+
+
+        
           
         //methods
         public function processView(){
@@ -47,17 +55,43 @@ class MainController extends Controller{
                 $this->pageID='noPageSelected';  //this will execute the default
             }
         }  //get the page ID
+
+
+
+
         public function updateView(){
             //this SWITCH is the main selector of the next page to load
            if($this->loggedin){  //these page options are only available to logged in users      
             $this->userAuthorisation=$this->session->getUserAuthorisation();   
             if($this->userAuthorisation==1){
                 //user is logged in as administrator
-               switch ($this->pageID) {           
-                case "home":
-                    //get the model
+               switch ($this->pageID) { 
+               case 'home':
+
                     $home=new Home($this->pageID,$this->session);
                     $game = new GameBoard($this->pageID, NULL, $this->db,$this->session);
+
+                    $data=[];
+
+                    $data['siteTitle']=$home->getSiteTitle(); 
+                    $data['menuNav']=$home->getMenuNav();
+
+                    $data['userFirstName']=$game->getUserFirstName();
+                    $data['userSurName']=$game->getUserSurName();
+                    $data['fullname']=$game->getUserFirstName()." ".$game->getUserSurName();
+
+                    $data['stringPanel_1'] =$home->getStringPanel_1();
+                    include_once 'views/start_game.php';
+                    break;          
+                case "new_game":
+                    //get the model
+                    $gameID=$this->session->getGameID();
+                    setcookie("GameLife",$gameID,time()+300); //cookietime is in seconds (5 minutes)
+
+                    $home=new Home($this->pageID,$this->session);
+                    $game = new GameBoard($this->pageID, NULL, $this->db,$this->session);
+
+                    setcookie("GameLife", "New Game",time()+10);
 
                     //get the content from the model - put into the $data array for the view:
                     $data=[];  //initialise an empty data array
@@ -66,11 +100,56 @@ class MainController extends Controller{
 
                     $data['menuNav']=$home->getMenuNav(); 
 
-                    $data['panelHead_1']=$home->getPanelHead_1(); 
-                    $data['stringPanel_1'] =$home->getStringPanel_1();     // A string intended of the Left Hand Side of the page
-                    $data['panelHead_2']=$home->getPanelHead_2(); 
-                    $data['stringPanel_2'] =$home->getStringPanel_2();
+                    $data['panelHead_1']=$game->getPanelHead_1(); 
+                    $data['stringPanel_1'] =$game->getStringPanel_1();
+                     
+                    $data['panelHead_2']=$game->getUserFirstName()." ".$game->getUserSurName(); 
+                    $data['stringPanel_2'] =$game->getStringPanel_2();
 
+                    $data['userFirstName']=$game->getUserFirstName();
+                    $data['userSurName']=$game->getUserSurName();
+                    $data['fullname']=$game->getUserFirstName()." ".$game->getUserSurName();
+
+                    $data['error_message']=$game->getLoginContent();
+
+                    $data['player_lives']=$game->getPlayerLives();
+                    //$data['NewGameID']=$game->createUniqueId();
+
+                    //$date['gameValue']=$game->getGameValues();
+
+                    $this->data=$data; //put the $data array into the class property do it can be accedded in DEBUG mode
+                    
+                    //display the view
+                    include_once 'views/game_board.php';   
+                    break;
+                case 'play':
+                    //get the model
+                    $home=new Home($this->pageID,$this->session);
+                    $game = new GameBoard($this->pageID, NULL, $this->db,$this->session);
+
+                    //get the content from the model - put into the $data array for the view:
+                    $data=[];  //initialise an empty data array
+                    $data['siteTitle']=$home->getSiteTitle(); 
+                    //$data['loginContent']=$home->getLoginContent();       // an array of menu items and associated URLS
+
+                    $data['menuNav']=$home->getMenuNav(); 
+
+                    $data['panelHead_1']=$game->getPanelHead_1(); 
+                    $data['stringPanel_1'] =$game->getStringPanel_1();
+                     
+                    $data['panelHead_2']=$game->getUserFirstName()." ".$game->getUserSurName(); 
+                    $data['stringPanel_2'] =$game->getStringPanel_2();
+
+                    $data['userFirstName']=$game->getUserFirstName();
+                    $data['userSurName']=$game->getUserSurName();
+                    $data['fullname']=$game->getUserFirstName()." ".$game->getUserSurName();
+
+                    $data['error_message']=$game->getLoginContent();
+                    //$data['NewGameID']=$game->createUniqueId();
+
+                    $data['player_lives']=$game->getPlayerLives();
+
+                    //$date['gameValue']=$game->getGameValues();
 
                     $this->data=$data; //put the $data array into the class property do it can be accedded in DEBUG mode
                     
@@ -80,18 +159,20 @@ class MainController extends Controller{
                 case "my_account":
                     //get the model
                     $home=new Home($this->pageID,$this->session);
-
+                    $game = new GameBoard($this->pageID, NULL, $this->db,$this->session);
                     //get the content from the model - put into the $data array for the view:
                     $data=[];  //initialise an empty data array
                     $data['siteTitle']=$home->getSiteTitle(); 
 
                     $data['menuNav']=$home->getMenuNav(); 
 
-                    $data['panelHead_1']='Uder Construction'; 
+                    $data['panelHead_1']='Under Construction'; 
                     $data['stringPanel_1'] ='Account info coming soon...';     // A string intended of the Left Hand Side of the page
-                    $data['panelHead_2']='Uder Construction'; 
+                    $data['panelHead_2']='Under Construction'; 
                     $data['stringPanel_2'] ='Happy Hanukkah';
 
+                    $data['userFirstName']=$game->getUserFirstName();
+                    $data['userSurName']=$game->getUserSurName();
 
                     $this->data=$data; //put the $data array into the class property do it can be accedded in DEBUG mode
                     
@@ -101,18 +182,20 @@ class MainController extends Controller{
                 case "leaderboard":
                     //get the model
                     $home=new Home($this->pageID,$this->session);
-
+                    $game = new GameBoard($this->pageID, NULL, $this->db,$this->session);
                     //get the content from the model - put into the $data array for the view:
                     $data=[];  //initialise an empty data array
                     $data['siteTitle']=$home->getSiteTitle(); 
 
                     $data['menuNav']=$home->getMenuNav(); 
 
-                    $data['panelHead_1']='Uder Construction'; 
+                    $data['panelHead_1']='Under Construction'; 
                     $data['stringPanel_1'] ='Leadeboard Coming soon...';     // A string intended of the Left Hand Side of the page
-                    $data['panelHead_2']='Uder Construction'; 
+                    $data['panelHead_2']='Under Construction'; 
                     $data['stringPanel_2'] ='Happy Gaming';
 
+                    $data['userFirstName']=$game->getUserFirstName();
+                    $data['userSurName']=$game->getUserSurName();
 
                     $this->data=$data; //put the $data array into the class property do it can be accedded in DEBUG mode
                     
@@ -152,10 +235,15 @@ class MainController extends Controller{
                     $data['menuNav']=$home->getMenuNav(); 
 
                     $data['panelHead_1']=$home->getPanelHead_1(); 
-                    $data['stringPanel_1'] =$home->getStringPanel_1();     // A string intended of the Left Hand Side of the page
+                    $data['stringPanel_1'] =$home->getStringPanel_1();
+                    $data['stringPanel_1_game'] =$game->getStringPanel_1(); 
                     $data['panelHead_2']=$home->getPanelHead_2(); 
                     $data['stringPanel_2'] =$home->getStringPanel_2();
+                    
+                    $data['userFirstName']=$game->getUserFirstName();
+                    $data['userSurName']=$game->getUserSurName();
 
+                    $date['gameValue']=$game->getGameValues();
 
                     $this->data=$data; //put the $data array into the class property do it can be accedded in DEBUG mode
                     
@@ -178,7 +266,10 @@ class MainController extends Controller{
                     $data['stringPanel_1'] =$game->getStringPanel_1();     // A string intended of the Left Hand Side of the page
                     $data['panelHead_2']=$game->getPanelHead_2(); 
                     $data['stringPanel_2'] =$game->getStringPanel_2();
+                    
 
+                    $data['userFirstName']=$game->getUserFirstName();
+                    $data['userSurName']=$game->getUserSurName();
 
                     $this->data=$data; //put the $data array into the class property do it can be accedded in DEBUG mode
                     
@@ -189,25 +280,20 @@ class MainController extends Controller{
            else{//user is not logged in
             switch ($this->pageID) {
                 case 'process_login':
-                    //get the model
                     $home=new Home($this->pageID,$this->session);
                     $game = new GameBoard($this->pageID, NULL, $this->db,$this->session);
-                    
-                    //get the content from the model - put into the $data array for the view:
-                    $data=[];  //initialise an empty data array
+
+                    $data=[];
+
                     $data['siteTitle']=$home->getSiteTitle(); 
-                    $data['loginContent']=$game->getLoginContent();       // an array of menu items and associated URLS
+                    $data['menuNav']=$home->getMenuNav();
 
-                    $data['menuNav']=$home->getMenuNav(); 
+                    $data['userFirstName']=$game->getUserFirstName();
+                    $data['userSurName']=$game->getUserSurName();
+                    $data['fullname']=$game->getUserFirstName()." ".$game->getUserSurName();
 
-                    $data['panelHead_1']=$game->getPanelHead_1(); 
-                    $data['stringPanel_1'] =$game->getStringPanel_1();     // A string intended of the Left Hand Side of the page
-                    $data['panelHead_2']=$game->getPanelHead_2(); 
-                    $data['stringPanel_2'] =$game->getStringPanel_2();
-                    $this->data=$data; //put the $data array into the class property do it can be accedded in DEBUG mode
-
-                    //display the view
-                    include_once 'views/game_board.php'; //load the view
+                    $data['stringPanel_1'] =$game->getStringPanel_1();
+                    include_once 'views/start_game.php';
                     break;
                 case "register": //Not modified yet, will modify later and replace the ppropriate views
                     //get the model

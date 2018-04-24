@@ -17,6 +17,10 @@ include_once 'models/Home.php';
 include_once 'models/Register.php';
 include_once 'models/Game_Board.php';
 
+//Include Player & Enemy
+include_once 'game_objects/Player.php';
+include_once 'game_objects/Enemy.php';
+
 
 //connect to the MySQL Server (with error reporting supression '@')
 @$db=new mysqli($DBServer,$DBUser,$DBPass,$DBName);
@@ -32,3 +36,5 @@ $session=new Session();
 
 //start the app
 $mainController=new MainController($db,$session);
+
+

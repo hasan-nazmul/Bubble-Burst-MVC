@@ -61,6 +61,10 @@ class Home extends Model{
 		if($this->loggedin){
 			switch ($this->pageID) {
 				case 'home':
+					$this->menuNav[1] = '<a href="'.$_SERVER['PHP_SELF'].'?pageID=my_account">Account</a>';
+					$this->menuNav[3] = '<a href="'.$_SERVER['PHP_SELF'].'?pageID=logout">Logout</a>';
+					break;
+				case 'new_game':
 					$this->menuNav[0] = '<a href="'.$_SERVER['PHP_SELF'].'?pageID=home">Home</a>';
 					$this->menuNav[1] = '<a href="'.$_SERVER['PHP_SELF'].'?pageID=my_account">Account</a>';
 					$this->menuNav[2] = '<a href="'.$_SERVER['PHP_SELF'].'?pageID=leaderboard">Leaderboard</a>';
@@ -69,7 +73,6 @@ class Home extends Model{
 				case 'my_account':
 					$this->menuNav[0] = '<a href="'.$_SERVER['PHP_SELF'].'?pageID=home">Home</a>';
 					$this->menuNav[1] = '<a href="'.$_SERVER['PHP_SELF'].'?pageID=logout">Logout</a>';
-					break;
 					break;
 				case 'logout':
 					$this->menuNav[0] = '<form class="frmLogin" method="POST" action="index.php?pageID=process_login">
@@ -120,7 +123,19 @@ class Home extends Model{
 
 	public function setStringPanel_1(){
 		if ($this->loggedin) {
-			$this->stringPanel_1 = file_get_contents('forms/form_game_board.html');
+			switch ($this->pageID) {
+				case 'home':
+					$this->stringPanel_1= file_get_contents('forms/form_start_game.html');
+					break;
+				case 'new_game':
+					//$this->stringPanel_1= file_get_contents('forms/form_game_board.html');
+
+					break;
+				default:
+					# code...
+					break;
+			}
+
 		}else{
 			$this->stringPanel_1 = file_get_contents('forms/login_form_view_1.html');
 		}
@@ -136,7 +151,17 @@ class Home extends Model{
 
 	public function setStringPanel_2(){
 		if ($this->loggedin) {
-			$this->stringPanel_2 = file_get_contents('forms/form_chat.html');
+			switch ($this->pageID) {
+				case 'home':
+					# code...
+					break;
+				case 'new_game':
+					$this->stringPanel_2 = file_get_contents('forms/form_chat.html');
+					break;
+				default:
+					# code...
+					break;
+			};
 		}else{
 			$this->stringPanel_2 = file_get_contents('forms/form_register.php');
 		}
