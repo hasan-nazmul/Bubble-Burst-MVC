@@ -62,7 +62,7 @@
 	<div class="header">
 		<div class="shell">
 			<div class="logo">
-				<h1><a href="index.php?pageID=home">Company Logo</a></h1>
+				<h1><a href="index.php?pageID=home">Bubble Burst</a></h1>
 			</div>
 			<div class="login">
 				<nav>

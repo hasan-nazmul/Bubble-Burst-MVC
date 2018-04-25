@@ -1,7 +1,9 @@
 <?php
 	/**
-	* @author Nazmul Hasan
-	*/
+ * Description of Session
+ *
+ * @author Nazmul Hasan K00217982
+ */
 	class Settings extends Model
 	{
 		//Panel heads

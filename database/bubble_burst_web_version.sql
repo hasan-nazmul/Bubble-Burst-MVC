@@ -1,27 +1,33 @@
--- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
+-- phpMyAdmin SQL Dump
+-- version 4.7.7
+-- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1    Database: bubble_burst
--- ------------------------------------------------------
--- Server version	5.5.5-10.1.30-MariaDB
+-- Host: 127.0.0.1
+-- Generation Time: Apr 25, 2018 at 11:58 PM
+-- Server version: 10.1.30-MariaDB
+-- PHP Version: 7.2.2
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `bubble_burst`
+--
+
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `game`
 --
 
-DROP TABLE IF EXISTS `game`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `game` (
   `DateCreated` datetime DEFAULT NULL,
   `UserID` varchar(20) NOT NULL,
@@ -325,107 +331,90 @@ CREATE TABLE `game` (
   `clicked_96` varchar(1) NOT NULL,
   `clicked_97` varchar(1) NOT NULL,
   `clicked_98` varchar(1) NOT NULL,
-  `clicked_99` varchar(1) NOT NULL,
-  PRIMARY KEY (`GameID`)
+  `clicked_99` varchar(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `game`
---
-
-LOCK TABLES `game` WRITE;
-/*!40000 ALTER TABLE `game` DISABLE KEYS */;
-/*!40000 ALTER TABLE `game` ENABLE KEYS */;
-UNLOCK TABLES;
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `player`
 --
 
-DROP TABLE IF EXISTS `player`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `player` (
   `UserID` varchar(20) NOT NULL,
   `GameID` varchar(40) NOT NULL,
   `Lives` int(1) NOT NULL,
-  `TotalMoves` int(2) NOT NULL,
-  PRIMARY KEY (`GameID`)
+  `TotalMoves` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `player`
---
-
-LOCK TABLES `player` WRITE;
-/*!40000 ALTER TABLE `player` DISABLE KEYS */;
-/*!40000 ALTER TABLE `player` ENABLE KEYS */;
-UNLOCK TABLES;
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `result`
 --
 
-DROP TABLE IF EXISTS `result`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `result` (
   `UserID` varchar(20) NOT NULL,
   `GameID` varchar(40) NOT NULL,
   `DatePlayed` datetime DEFAULT NULL,
   `Points` int(2) NOT NULL,
   `Lives` int(2) NOT NULL,
-  `Win` int(1) NOT NULL,
-  PRIMARY KEY (`GameID`)
+  `Win` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `result`
---
-
-LOCK TABLES `result` WRITE;
-/*!40000 ALTER TABLE `result` DISABLE KEYS */;
-/*!40000 ALTER TABLE `result` ENABLE KEYS */;
-UNLOCK TABLES;
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `users`
 --
 
-DROP TABLE IF EXISTS `users`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `users` (
   `DateCreated` datetime NOT NULL,
   `Description` varchar(200) NOT NULL,
   `UserID` varchar(20) NOT NULL,
   `FirstName` varchar(20) NOT NULL,
   `LastName` varchar(20) NOT NULL,
-  `Password` varchar(40) NOT NULL,
-  PRIMARY KEY (`UserID`)
+  `Password` varchar(40) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `users`
 --
 
-LOCK TABLES `users` WRITE;
-/*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES ('2018-04-20 00:00:00','Lorem ipsum dolor sit amet, cu sumo esse eum. Id sea alia scaevola, qui modus justo principes at. Ex euripidis torquatos persecuti per, aeque vituperata scriptorem ad per. Unum delicata ex vis.','alice.smith','Alice','Smith','cd9d379715cccc83fd8c8c2dc0730c6dd081bd35'),('0000-00-00 00:00:00','About me is one of the most popular personal website builders, and it’s no wonder. It has all the most important features, it’s very intuitive and looks great. Basically, it allows you to connect all ','bob.fancy','Bob','Fancy','cd9d379715cccc83fd8c8c2dc0730c6dd081bd35'),('0000-00-00 00:00:00','I am neither especially clever nor especially gifted. I am only very, very curious. Albert Einstein','nazmul.hasan','Nazmul','Hasan','e9cbd2ea8015a084ce9cf83a3c65b51f8fa10a39');
-/*!40000 ALTER TABLE `users` ENABLE KEYS */;
-UNLOCK TABLES;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+INSERT INTO `users` (`DateCreated`, `Description`, `UserID`, `FirstName`, `LastName`, `Password`) VALUES
+('2018-04-20 00:00:00', 'Lorem ipsum dolor sit amet, cu sumo esse eum. Id sea alia scaevola, qui modus justo principes at. Ex euripidis torquatos persecuti per, aeque vituperata scriptorem ad per. Unum delicata ex vis.', 'alice.smith', 'Alice', 'Smith', 'cd9d379715cccc83fd8c8c2dc0730c6dd081bd35'),
+('0000-00-00 00:00:00', 'About me is one of the most popular personal website builders, and it’s no wonder. It has all the most important features, it’s very intuitive and looks great. Basically, it allows you to connect all ', 'bob.fancy', 'Bob', 'Fancy', 'cd9d379715cccc83fd8c8c2dc0730c6dd081bd35'),
+('0000-00-00 00:00:00', 'I am neither especially clever nor especially gifted. I am only very, very curious. Albert Einstein', 'nazmul.hasan', 'Nazmul', 'Hasan', 'e9cbd2ea8015a084ce9cf83a3c65b51f8fa10a39');
 
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `game`
+--
+ALTER TABLE `game`
+  ADD PRIMARY KEY (`GameID`);
+
+--
+-- Indexes for table `player`
+--
+ALTER TABLE `player`
+  ADD PRIMARY KEY (`GameID`);
+
+--
+-- Indexes for table `result`
+--
+ALTER TABLE `result`
+  ADD PRIMARY KEY (`GameID`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`UserID`);
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-
--- Dump completed on 2018-04-25 22:41:33

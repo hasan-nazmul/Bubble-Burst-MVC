@@ -1,8 +1,10 @@
 <?php
 
 	/**
-	* 
-	*/
+ * Description of Session
+ *
+ * @author Nazmul Hasan K00217982
+ */
 	class Register extends Model
 	{
 		private $userName;

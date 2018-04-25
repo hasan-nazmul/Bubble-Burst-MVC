@@ -1,8 +1,8 @@
 <?php
 /**
- * Description of SessionTest
+ * Description of Session
  *
- * @author gerry.guinane
+ * @author Nazmul Hasan K00217982
  */
 class SessionTest {
     //put your code here

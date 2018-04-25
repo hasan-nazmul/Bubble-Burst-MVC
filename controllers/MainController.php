@@ -1,9 +1,8 @@
 <?php
 /**
- * Description of MainController
- * This is the main controller class for the web applicaiton
+ * Description of Session
  *
- * @author gerry.guinane
+ * @author Nazmul Hasan K00217982
  */
 class MainController extends Controller{
     

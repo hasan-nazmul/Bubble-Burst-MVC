@@ -1,5 +1,9 @@
 <?php
-
+/**
+ * Description of Session
+ *
+ * @author Nazmul Hasan K00217982
+ */
 
 class Home extends Model{
 	private $siteTitle;
@@ -214,7 +218,7 @@ class Home extends Model{
 	}
 	
 	public function setAboutMeString(){
-		$this->aboutMeMessage = 'Lorem ipsum is a dummy language, designed to fill the empty content of a page or section to apply fake content, Lorem ipsum dolar.';
+		$this->aboutMeMessage = 'Howdy, people of the Internet, I am Nazmul, a passionate Software Developer and a very enthusiastic programmer. "Programming today is a race between software engineers striving to build bigger and better idiot-proof programs, and the Universe trying to produce bigger and better idiots. So far, the Universe is winning"';
 	}
 	
 

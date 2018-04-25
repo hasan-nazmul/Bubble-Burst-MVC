@@ -1,5 +1,11 @@
-<?php
 
+
+<?php
+/**
+ * Description of Session
+ *
+ * @author Nazmul Hasan K00217982
+ */
 	class GameBoard extends Model{
 		private $userFirstName;
 		private $userLastName;

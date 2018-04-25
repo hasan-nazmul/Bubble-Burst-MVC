@@ -1,7 +1,9 @@
 <?php
 /**
-* 
-*/
+ * Description of Session
+ *
+ * @author Nazmul Hasan K00217982
+ */
 class LeaderBoard extends Model
 {
 	private $DatePlayed;
