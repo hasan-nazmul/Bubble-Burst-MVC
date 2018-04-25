@@ -4,3 +4,5 @@
 
 define ('__DEBUG',0);  //constants are defined using the define keyword 1=true, 0=false
 
+define ('__THIS_URI_ROOT','http://localhost/Bubble-Burst-MVC/');
+

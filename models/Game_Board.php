@@ -155,7 +155,7 @@
 			            }
 
 						$recordCounter = 0;
-						$this->stringPanel_1 = '<h3 class="lives">Lives: '.$this->playerLives.' <span class="points"> Points: '.$this->playerPoints.'</span></h3>';
+						$this->stringPanel_1 = '<h3><span class="lives">Lives: '.$this->playerLives.'</span> <span class="points"> Points: '.$this->playerPoints.'</span></h3>';
 						$this->stringPanel_1 .= '<form id="game" onSubmit="return validate();" method="POST" action="'.$_SERVER['PHP_SELF'].'?pageID=play"><table><tbody>';
 						for ($i=0; $i < 10 ; $i++) {
 							$this->stringPanel_1 .='<tr>';
@@ -299,7 +299,7 @@
 
 			            //Re-Generate table
 			            $recordCounter = 0;
-			            $this->stringPanel_1 = '<h3 class="lives">Lives: '.$this->playerLives.' <span class="points"> Points: '.$this->playerPoints.'</span></h3>';
+			            $this->stringPanel_1 = '<h3><span class="lives">Lives: '.$this->playerLives.'</span> <span class="points"> Points: '.$this->playerPoints.'</span></h3>';
 						$this->stringPanel_1 .= '<form onSubmit="return validate();" method="POST" action="'.$_SERVER['PHP_SELF'].'?pageID=play"><table><tbody>';
 						for ($i=0; $i < 10 ; $i++) {
 							$this->stringPanel_1 .='<tr>';
@@ -482,28 +482,30 @@
 
         //Sets the user full name depending on the pageID
         public function setUserFullName(){
-        	switch ($this->pageID) {
-        		case 'process_login':
-        			$this->getUserInfo();
-        			break;
-        		case 'home':
-        			$this->getUserInfo();
-        			break;
-        		case 'leaderboard':
-        			$this->getUserInfo();
-        			break;
-        		case 'my_account':
-        			$this->getUserInfo();
-        			break;
-        		case 'new_game':
-        			$this->getUserInfo();
-        			break;
-        		case 'play':
-        			$this->getUserInfo();
-        			break;
-        		default:
-        			//echo 'Un-authorised page!'; 
-        			break;
+        	if ($this->loggedin) {
+        		switch ($this->pageID) {
+	        		case 'process_login':
+	        			$this->getUserInfo();
+	        			break;
+	        		case 'home':
+	        			$this->getUserInfo();
+	        			break;
+	        		case 'leaderboard':
+	        			$this->getUserInfo();
+	        			break;
+	        		case 'my_account':
+	        			$this->getUserInfo();
+	        			break;
+	        		case 'new_game':
+	        			$this->getUserInfo();
+	        			break;
+	        		case 'play':
+	        			$this->getUserInfo();
+	        			break;
+	        		default:
+	        			$this->getUserInfo();
+	        			break;
+	        	}
         	}
         }
 

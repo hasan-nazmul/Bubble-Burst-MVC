@@ -9,6 +9,9 @@
 .game_board {
   padding: 15px;
 }
+.game_board p {
+  padding: 0px;
+}
 .game_board h3 {
     padding:0px 0px 15px 0px;
 }
@@ -44,4 +47,16 @@
   border:1px solid #ff8b00;
   color:#B96200;
   background-color: #ffc27a;
+}
+
+.lives {
+  border:1px solid #ccc;
+  padding: 5px;
+  margin:10px 0px 10px 0px;
+}
+
+.points {
+  border:1px solid #ccc;
+  padding: 5px;
+  margin: 10px;
 }

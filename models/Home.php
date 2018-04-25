@@ -61,14 +61,20 @@ class Home extends Model{
 		if($this->loggedin){
 			switch ($this->pageID) {
 				case 'home':
-					$this->menuNav[1] = '<a href="'.$_SERVER['PHP_SELF'].'?pageID=my_account">Account</a>';
-					$this->menuNav[3] = '<a href="'.$_SERVER['PHP_SELF'].'?pageID=logout">Logout</a>';
-					break;
-				case 'new_game':
 					$this->menuNav[0] = '<a href="'.$_SERVER['PHP_SELF'].'?pageID=home">Home</a>';
 					$this->menuNav[1] = '<a href="'.$_SERVER['PHP_SELF'].'?pageID=my_account">Account</a>';
 					$this->menuNav[2] = '<a href="'.$_SERVER['PHP_SELF'].'?pageID=leaderboard">Leaderboard</a>';
 					$this->menuNav[3] = '<a href="'.$_SERVER['PHP_SELF'].'?pageID=logout">Logout</a>';
+					break;
+				case 'new_game':
+					//$this->menuNav[0] = '<a href="'.$_SERVER['PHP_SELF'].'?pageID=home">Home</a>';
+					//$this->menuNav[1] = '<a href="'.$_SERVER['PHP_SELF'].'?pageID=my_account">Account</a>';
+					//$this->menuNav[2] = '<a href="'.$_SERVER['PHP_SELF'].'?pageID=leaderboard">Leaderboard</a>';
+					$this->menuNav[3] = '<a href="'.$_SERVER['PHP_SELF'].'?pageID=logout">Logout</a>';
+					break;
+				case 'play':
+					$this->menuNav[3] = '<a href="'.$_SERVER['PHP_SELF'].'?pageID=logout">Logout</a>';
+					break;
 					break;
 				case 'my_account':
 					$this->menuNav[0] = '<a href="'.$_SERVER['PHP_SELF'].'?pageID=home">Home</a>';
@@ -132,7 +138,7 @@ class Home extends Model{
 
 					break;
 				default:
-					# code...
+					$this->stringPanel_1= file_get_contents('forms/form_start_game.html');
 					break;
 			}
 

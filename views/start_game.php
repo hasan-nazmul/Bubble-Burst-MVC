@@ -80,7 +80,7 @@
 		<div class="start_game">
 			<div class="shell">
 				<div class="column_one">
-					<div class="notification">
+					<div class="notification green">
 						<p>Welcome, <span class="current_user"><?php echo $userFirstName . " " .$userSurName; ?></span></span></p>
 					</div>
 					<?php echo $stringPanel_1; ?>

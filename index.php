@@ -16,6 +16,9 @@ include_once 'controllers/MainController.php';
 include_once 'models/Home.php';
 include_once 'models/Register.php';
 include_once 'models/Game_Board.php';
+include_once 'models/Leader_Board.php';
+include_once 'models/Settings.php';
+include_once 'models/Message.php';
 
 //Include Player & Enemy
 include_once 'game_objects/Player.php';

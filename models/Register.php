@@ -16,9 +16,13 @@
 		private $panelHead_2;
 		private $stringPanel_2;
 
+        //Error handling
+        private $errorHead;
+        private $error_message;
+        private $registrationSuccess;
+
 		private $db;
 		private $sql;
-		private $loginError;
 		private $session;
 		private $pageID;
 		
@@ -59,18 +63,73 @@
 					$passwordOne = $this->db->real_escape_string($_POST['userPassOne']);
 					$passwordTwo = $this->db->real_escape_string($_POST['userPassTwo']);
 
-					if ($passwordOne == $passwordTwo) {
+                    if ($this->firstName == "" || $this->surName == "") {
+                        $this->stringPanel_1 = '<input type="text" name="firstName" id="firstName" placeholder="First Name" class="red">';
+                        $this->stringPanel_1 .= '<input type="text" name="surName" id="surName" placeholder="Surname" class="red">';
+                        $this->stringPanel_1 .= '<input type="text" name="userID" id="userID" placeholder="Username" value="'.$this->userName.'">';
+                        $this->stringPanel_1 .= '<input type="password" name="userPassOne" id="userPass" placeholder="Type Password">';
+                        $this->stringPanel_1 .= '<input type="password" name="userPassTwo" id="userPass" placeholder="Re-type Password">';
+                        $this->stringPanel_1 .= '<input type="submit" name="submitReg" id="submitReg" value="Register">';
+
+                        $this->errorHead= 'Name must not be empty';
+                        $this->error_message = 'Please enter your first name and last name!';
+                        return true;
+                    }
+
+                    if ($this->userName == "") {
+                        $this->stringPanel_1 = '<input type="text" name="firstName" id="firstName" placeholder="First Name" value="'.$this->firstName.'">';
+                        $this->stringPanel_1 .= '<input type="text" name="surName" id="surName" placeholder="Surname" value="'.$this->surName.'">';
+                        $this->stringPanel_1 .= '<input type="text" name="userID" id="userID" placeholder="Username" class="red">';
+                        $this->stringPanel_1 .= '<input type="password" name="userPassOne" id="userPass" placeholder="Type Password">';
+                        $this->stringPanel_1 .= '<input type="password" name="userPassTwo" id="userPass" placeholder="Re-type Password">';
+                        $this->stringPanel_1 .= '<input type="submit" name="submitReg" id="submitReg" value="Register">';
+
+                        $this->errorHead= 'Username empty!';
+                        $this->error_message = 'Please enter your a username!';
+                        return true;
+                    }
+
+                    /*if ($passwordOne == "" || $passwordTwo = "") {
+                        $this->stringPanel_1 = '<input type="text" name="firstName" id="firstName" placeholder="First Name" value="'.$this->firstName.'">';
+                        $this->stringPanel_1 .= '<input type="text" name="surName" id="surName" placeholder="Surname" value="'.$this->surName.'">';
+                        $this->stringPanel_1 .= '<input type="text" name="userID" id="userID" placeholder="Username" value="'.$this->userName.'">';
+                        $this->stringPanel_1 .= '<input type="password" name="userPassOne" id="userPass" placeholder="Type Password" class="red">';
+                        $this->stringPanel_1 .= '<input type="password" name="userPassTwo" id="userPass" placeholder="Re-type Password" class="red">';
+                        $this->stringPanel_1 .= '<input type="submit" name="submitReg" id="submitReg" value="Register">';
+
+                        $this->errorHead= 'Invalid password!';
+                        $this->error_message = 'Password fields must not be empty, please make sure both password fields have values.';
+                        return true;
+                    }*/
+                    if (($passwordOne == $passwordTwo) && ($passwordOne != "" || $passwordTwo != "")) {
 						$this->userPassword = $passwordOne;
 
 						if($this->registerEncryptPW()){  //register with password encryption
-                            $this->stringPanel_1 = 'Registration successful - please log in using the link above.';
+                            $this->stringPanel_1 = '<div class="notification green"><p>Registration successful - please log in using the link above.</p></div>';
+                            $this->registrationSuccess = true;
                         }else{//registration not successful
-                            $this->stringPanel_1 = file_get_contents('forms/form_register.php');  //this reads an external form file into the string
-                            $this->stringPanel_1.= 'Unable to complete registration Possible duplicate User ID';
-                        }                        
+                            //$this->stringPanel_1 = file_get_contents('forms/form_register.php');
+                            $this->stringPanel_1 = '<input type="text" name="firstName" id="firstName" placeholder="First Name" value="'.$this->firstName.'">';
+                            $this->stringPanel_1 .= '<input type="text" name="surName" id="surName" placeholder="Surname" value="'.$this->surName.'">';
+                            $this->stringPanel_1 .= '<input type="text" name="userID" id="userID" placeholder="Username" class="red" value="'.$this->userName.'" class="red">';
+                            $this->stringPanel_1 .= '<input type="password" name="userPassOne" id="userPass" placeholder="Type Password">';
+                            $this->stringPanel_1 .= '<input type="password" name="userPassTwo" id="userPass" placeholder="Re-type Password">';
+                            $this->stringPanel_1 .= '<input type="submit" name="submitReg" id="submitReg" value="Register">';
+
+                            $this->errorHead= 'Error!';
+                            $this->error_message = 'Unable to complete registration Possible duplicate User ID';
+                        }                      
                     }else{//passwords dont match  show the registration form again
-                        $this->stringPanel_1 = file_get_contents('forms/form_register.php');  //this reads an external form file into the string
-                        $this->stringPanel_1.= '<br>Passwords you have entered don\'t match - please try again. '; 
+                        //$this->stringPanel_1 = file_get_contents('forms/form_register.php');
+                        $this->stringPanel_1 = '<input type="text" name="firstName" id="firstName" placeholder="First Name" value="'.$this->firstName.'">';
+                        $this->stringPanel_1 .= '<input type="text" name="surName" id="surName" placeholder="Surname" value="'.$this->surName.'">';
+                        $this->stringPanel_1 .= '<input type="text" name="userID" id="userID" placeholder="Username" value="'.$this->userName.'">';
+                        $this->stringPanel_1 .= '<input type="password" name="userPassOne" id="userPass" placeholder="Type Password" class="red">';
+                        $this->stringPanel_1 .= '<input type="password" name="userPassTwo" id="userPass" placeholder="Re-type Password" class="red">';
+                        $this->stringPanel_1 .= '<input type="submit" name="submitReg" id="submitReg" value="Register">';
+
+                        $this->errorHead = "Password did not match!";
+                        $this->error_message = "Please check that you have entered the same password in both fields.";
                     }  
 					break;
 				case "process_login":
@@ -109,13 +168,13 @@
             //check if any rows returned from query
             if($rs=$this->db->query($sql)){  //execute the query and check it worked and returned data    
                 if ($rs->num_rows<>1){  //username and password is not valid
-                    $this->loginError= 'Login Fail - '.$rs->num_rows;
+                    $this->error_message= 'Login Fail - '.$rs->num_rows;
                     //free result set memory
                     $rs->free();
                     return FALSE;                    
                 }
                 else{                    
-                $this->loginError= 'Login Successful - no error';
+                $this->error_message= 'Registration succesful!';
                 $row=$rs->fetch_assoc();
                 $this->userName=$row['UserID'];
                 $this->firstName=$row['FirstName'];
@@ -142,10 +201,11 @@
              * VARCHAR(40)
              *   
              */
+            $tempDate = date("Y/m/d");
             $this->userPassword=hash('ripemd160', $this->userPassword);
 
             //create the SQL insert statement for the new record
-            $sql='INSERT INTO `bubble_burst`.`users`(`UserID`,`FirstName`,`LastName`,`Password`)VALUES("'.$this->userName.'","'.$this->firstName.'","'.$this->surName.'","'.$this->userPassword.'")';
+            $sql='INSERT INTO `bubble_burst`.`users`(`DateCreated`,`UserID`,`FirstName`,`LastName`,`Password`)VALUES("'.$tempDate.'","'.$this->userName.'","'.$this->firstName.'","'.$this->surName.'","'.$this->userPassword.'")';
             //execute the insert query
             if(@$this->db->query($sql)){  //execute the query and check it worked    
                 return TRUE;
@@ -156,8 +216,11 @@
         }
 
          //public accessible getter functions
+        public function getRegResult(){return $this->registrationSuccess;}
         public function getPanelHead_1(){return $this->panelHead_1;}
         public function getStringPanel_1(){return $this->stringPanel_1;}
+        public function getErrorHead(){return $this->errorHead;}
+        public function getErrorMessage(){return $this->error_message;}
         public function getUserID(){return $this->userID;}
         public function getSQL(){return $this->sql;}  
 	}

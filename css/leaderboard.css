@@ -7,9 +7,23 @@
 	border-bottom:1px solid #ececeb;
 	background-color: #e5e5e5;
 }
+.leaderboard_header .user {
+    float: right;
+    border: 1px solid #555;
+    background-color: #959595;
+    margin: 12px 12px 0px 0px;
+    color: #353535;
+}
+.leaderboard_header .pHead {
+    float: left;
+}
 .leaderboard_header h1, h2, h3, h4, h5 {
 	font-size: 1.4em;
 	padding: 15px;
+}
+.leaderboard_header p {
+    font-size: 1.1em;
+    padding: 5px;
 }
 .leaderboard_content {
 
@@ -29,5 +43,5 @@
 }
 
 .leaderboard tr:nth-child(even) {
-    background-color: #dddddd;
+    background-color: #F4F4F4;
 }

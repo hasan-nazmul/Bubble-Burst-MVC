@@ -12,27 +12,8 @@
 	$userFirstName = $data['userFirstName'];
 	$userSurName = $data['userSurName'];
 
-	$message = $data['error_message'];
-	echo "Error message: " .$message;
-
-	$player_lives = $data['player_lives'];
-
-	//$GameValues = $data['gameValue'];
-
-	//$GameID = $data['NewGameID'];
-	//echo "GameID: " .$GameID;
-
-	//$GameID=hash('ripemd160', $GameID);
-	//setcookie("TempCookieID","NAZMUL",time()+10); //cookietime is in seconds (1 hour)
-
-	//echo '<h4>$_COOKIE Array</h4>';
-    //echo '<table class="table table-bordered"><thead><tr><th>KEY</th><th>VALUE</th></tr></thead>';
-    //foreach($_COOKIE as $key=>$value){echo '<tr><td>'.$key.'</td><td>'.$value.'</td></tr>';}
-    //echo '</table>';
-    
-    //echo "<hr>";
-
-
+	//$message = $data['error_message'];
+	//echo "Error message: " .$message;
 
 ?>
 
@@ -93,6 +74,10 @@
 	<div class="main">
 		<div class="shell">
 
+			<div class="notification green" style="margin-top: 10px;">
+				<p>NOTE: you must finish the game to see more menu items!</p>
+			</div>
+
 			<div class="left">
 				<div class="game_board_header">
 					<h3><?php echo $panelHead_1; ?></h3>
@@ -109,6 +94,7 @@
 						<h1>Welcome, <span class="current_user"><?php echo $userFirstName . " " .$userSurName; ?></span></h1>
 					</div>
 					<?php echo $stringPanel_2; ?>
+					
 					<div class="clearfix"></div>
 				</div>
 			</div>

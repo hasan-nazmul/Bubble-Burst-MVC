@@ -1,29 +1,10 @@
-<?php
-	$siteTitle = $data['siteTitle'];
-	//$menuNavHolder = $data['loginContent'];
-	$menuNav = $data['menuNav'];
-	$panelHead_1 = $data['panelHead_1'];
-	$panelHead_2 = $data['panelHead_2'];
-
-	//About me content
-	$fullName = $data['full_name'];
-	$description = $data['description'];
-	$memberSince=$data['member_since'];
-	$gamesPlayed=$data['games_played'];
-	$gamesWon=$data['games_won'];
-
-
-	//Settings content
-	//Nothing to import for right side
-?>
-
 <!DOCTYPE html>
 <html>
 <head>
-	<title><?php echo $siteTitle; ?></title>
-	<link rel="stylesheet" type="text/css" href="css/default.css">
-	<link rel="stylesheet" type="text/css" href="css/game.css">
-	<link rel="stylesheet" type="text/css" href="css/chat.css">
+	<title>Welcome to Bubble Burst</title>
+	<link rel="stylesheet" type="text/css" href="../css/default.css">
+	<link rel="stylesheet" type="text/css" href="../css/game.css">
+	<link rel="stylesheet" type="text/css" href="../css/chat.css">
 	<script>
         function IsClicked(){
           var radios = document.getElementsByName("grid");
@@ -46,7 +27,10 @@
           return true;
         }
 
-    </script> 
+    </script>
+
+
+    
 </head>
 <body>
 		
@@ -59,8 +43,7 @@
 			<div class="login">
 				<nav>
 					<ul>
-						<?php foreach($menuNav as $menuItem){echo "<li>$menuItem</li>";} //populate the navbar menu items?>				
-					</ul>
+						<li><a href="/Bubble-Burst-MVC/index.php?pageID=home">Home</a></li><li><a href="/Bubble-Burst-MVC/index.php?pageID=logout">Logout</a></li>					</ul>
 				</nav>
 				<div class="clearfix"></div>
 			</div>
@@ -70,9 +53,10 @@
 
 	<div class="main">
 		<div class="shell">
+
 			<div class="left">
 				<div class="game_board_header">
-					<h1><?php echo $panelHead_1; ?></h1>
+					<h1>Account Info</h1>
 				</div>
 				<div class="account_info">
 					<div class="widget">
@@ -80,16 +64,16 @@
 							<h1>About Me</h1>
 						</div>-->
 						<div class="widget_content">
-							<h2><span class="name"><?php echo $fullName; ?></span></h2>
-							<p><span class="description"><?php echo $description; ?></span></p>
-							<p class="member_since">Member since: <span><?php echo $memberSince; ?></span></p>
+							<h2><span class="name">Bob Fancy</span></h2>
+							<p><span class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span></p>
+							<p class="member_since">Member since: <span>xDate</span></p>
 						</div>
 					</div>
 
 					<div class="widget">
 						<div class="widget_content">
-							<p>Games Played: <span class="games_palyed"><?php echo $gamesPlayed; ?></span></p>
-							<p>Games Won: <span class="games_won"><?php echo $gamesWon; ?></span></p>
+							<p>Games Played: <span class="games_palyed">xAmount</span></p>
+							<p>Games Won: <span class="games_won">xAmount</span></p>
 						</div>
 					</div>
 				</div>
@@ -99,7 +83,7 @@
 			<div class="right">
 				<div class="chats">
 					<div class="game_board_header">
-						<h1><?php echo $panelHead_2; ?></span></h1>
+						<h1>Account Settings</span></h1>
 					</div>
 					<div class="right_content">
 						<div class="account_info">
@@ -109,7 +93,7 @@
 										<h1>About Me</h1>
 									</div>
 									<div class="widget_content">
-										<textarea name="aboutMe"><?php echo $description; ?></textarea>
+										<textarea name="aboutMe">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</textarea>
 									</div>
 								</div>
 

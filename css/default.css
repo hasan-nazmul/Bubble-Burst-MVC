@@ -144,9 +144,29 @@ a {
 }
 
 .notification {
-	background-color:  #c1ec8e ;
-	border:1px solid  #58a002 ;
+	
+}
+.notification h1, h2, h3, h4, h5 {
+	font-size: 1.3em;
+	padding: 10px 10px 0px 10px;
+}
+.notification p {
+	padding: 0px 10px 10px 10px;
+}
+.red {
+	color:#EC0000;
+	background-color: #FFC3C3;
+	border: 1px solid #EC0000;
+}
+.green {
 	color: #58a002 ;
+	background-color: #D0F37F;
+	border:1px solid  #58a002 ;
+}
+
+.right form input.red {
+	color:#EC0000;
+	border: 1px solid #EC0000;
 }
 .content {
 	padding: 10px;
@@ -163,6 +183,75 @@ a {
 	float: right;
 	margin:10px 0px;
 	background-color: #fff;
+}
+
+.account_info {
+
+}
+.account_info .widget {
+	width: 95%;
+	margin: 10px auto;
+	border:1px solid #ccc;
+}
+
+.widget_header {
+	border-bottom: 1px solid #ccc;
+	color: #A99C04;
+}
+.widget_header h1 {
+	font-size: 1.3em;
+	padding:5px 15px;
+}
+.widget_content .name {
+	color: #A99C04;
+}
+.widget_content p {
+	color: #3E3E3E;
+}
+
+.widget_content textarea, input {
+	box-sizing: border-box;
+}
+.widget_content textarea {
+	display: block;
+	width: 95%;
+	max-width: 95%;
+	min-width: 95%;
+	height: 150px;
+	min-height: 150px;
+	max-height: 150px;
+	margin: 10px auto 10px auto;
+	border:1px solid #E8E8E8;
+	padding: 10px;
+	font-size: 1.2em;
+	color: #3E3E3E;
+}
+.widget_content input[type="password"]{
+	display: inline-block;
+	width:27.8%;
+	margin:15px;
+	padding: 5px;
+	color: #3E3E3E;
+	border:1px solid #E8E8E8;
+}
+
+.account_info .save_settings {
+	float: left;
+	margin: 15px;
+	border:1px solid #756C02;
+	background-color: #938701;
+	color: #fff;
+	padding: 10px;
+	cursor: pointer;
+}
+.account_info .delete_account {
+	float: right;
+	margin: 15px;
+	border:1px solid #950101;
+	background-color: #C90C00;
+	color: #fff;
+	padding: 10px;
+	cursor: pointer;
 }
 
 .welcome {

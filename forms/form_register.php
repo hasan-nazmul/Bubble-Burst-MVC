@@ -3,7 +3,7 @@
 		<h3>Sign Up</h3>
 		<p>Free early access, limited time!</p>
 	</div>
-	<div class="stringPanel register">
+	<div class="stringPanel">
 		<form class="register" method="POST" action="index.php?pageID=process_registration">
 			<input type="text" name="firstName" id="firstName" placeholder="First Name">
 			<input type="text" name="surName" id="surName" placeholder="Surname">
